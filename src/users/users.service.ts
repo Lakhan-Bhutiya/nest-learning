@@ -1,5 +1,6 @@
 import { Body, Injectable } from '@nestjs/common';
-import { User } from './user.interface';
+import { User } from 'src/dto/user.dto';
+
 
 
 @Injectable()
