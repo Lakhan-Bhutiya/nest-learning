@@ -21,6 +21,7 @@ async function bootstrap() {
       whitelist : true,
       transform : true
     })
+    
   )  
   app.useGlobalInterceptors(new ResponseInterceptor());
   const httpAdapterHost = app.get(HttpAdapterHost);
