@@ -24,24 +24,23 @@ import {
       }
   
       const [type, token] = authHeader.split(' ');
-      if (type !== 'Bearer' || !token) {
+      if (type != 'Bearer' || !token) {
         throw new UnauthorizedException('Invalid authorization format');
       }
   
       try {
-        // 1️⃣ Verify JWT
+        
         const payload = this.jwtService.verify(token);
   
-        // 2️⃣ Check Redis blacklist
+        
         const isBlacklisted = await this.redis.get(
           `blacklist:${payload.jti}`,
         );
   
         if (isBlacklisted) {
           throw new UnauthorizedException('Token revoked');
-        }
-  
-        // 3️⃣ Attach user
+        } 
+        
         request.user = payload;
         return true;
       } catch (error) {
